@@ -1,13 +1,42 @@
 package accounts
 
+import (
+	"errors"
+	"fmt"
+)
+
 // Account struct
 type Account struct {
 	owner   string
 	balance int
 }
 
+var errNoMoney = errors.New("Oooopsy! Can't withdraw.")
+
 // NewAccount creates Account
 func NewAccount(owner string) *Account {
-	account := Account{owner: owner, balance: 1000}
+	account := Account{owner: owner, balance: 0}
 	return &account
+}
+
+// Methods (function with a type)
+// Deposit x amount on your account
+func (a *Account) Deposit(amount int) {
+	fmt.Println("Gonna deposit", amount)
+	a.balance += amount
+}
+
+// Balance of your account
+func (a Account) Balance() int {
+	return a.balance
+}
+
+// Withdraw x amount from your account
+func (a *Account) Withdraw(amount int) error {
+	// a.balance -= amount
+	if a.balance < amount {
+		return errNoMoney
+	}
+	a.balance -= amount
+	return nil
 }
