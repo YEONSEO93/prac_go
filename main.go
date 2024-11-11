@@ -1,9 +1,18 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
+
+func lenAndUpper(name string) (lenght int, uppercase string) {
+	defer fmt.Println("let's test!")
+	lenght = len(name)
+	uppercase = strings.ToUpper(name)
+	return
+}
 
 func main() {
-	name := "yeonseo"
-	name = "ko"
-	fmt.Println(name)
+	totalLenght, up := lenAndUpper("yeonseo")
+	fmt.Println(totalLenght, up)
 }
