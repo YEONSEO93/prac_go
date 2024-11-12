@@ -1,18 +1,23 @@
 package main
 
 import (
-	"github.com/YEONSEO93/learngo/mydict"
-
 	"fmt"
+
+	"github.com/YEONSEO93/learngo/mydict"
 )
 
 func main() {
-	dictionary := mydict.Dictionary{"first": "First Word"}
-	definition, err := dictionary.Search("second")
-	// definition, err := dictionary.Search("first")
+	dictionary := mydict.Dictionary{}
+	word := "hello"
+	definition := "Greeting"
+	err := dictionary.Add(word, definition)
 	if err != nil {
 		fmt.Println(err)
-	} else {
-		fmt.Println(definition)
+	}
+	hello, _ := dictionary.Search(word)
+	fmt.Println("found", word, "definition:", hello)
+	err2 := dictionary.Add(word, definition)
+	if err2 != nil {
+		fmt.Println(err2)
 	}
 }
